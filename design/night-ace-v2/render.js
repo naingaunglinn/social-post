@@ -1,10 +1,34 @@
+// Renders one post's deck: out/<slug>/*.html -> shots/<slug>/*.png
+// plus metrics/<slug>.json for make_pptx.py.
+//
+//   node render.js                # newest deck in out/
+//   node render.js <slug>
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const OUT = path.join(__dirname, 'out');
-const SHOTS = path.join(__dirname, 'shots');
+const OUT_ROOT = path.join(__dirname, 'out');
+
+function resolveSlug(arg) {
+  if (arg) return arg;
+  const dirs = fs.readdirSync(OUT_ROOT)
+    .filter(d => fs.statSync(path.join(OUT_ROOT, d)).isDirectory()).sort();
+  if (!dirs.length) throw new Error(`no decks in ${OUT_ROOT}/ — run build.py first`);
+  console.log('no slug given — using newest deck:', dirs[dirs.length - 1]);
+  return dirs[dirs.length - 1];
+}
+
+const SLUG = resolveSlug(process.argv[2]);
+const OUT = path.join(OUT_ROOT, SLUG);
+const SHOTS = path.join(__dirname, 'shots', SLUG);
+const METRICS_DIR = path.join(__dirname, 'metrics');
+
+if (!fs.existsSync(OUT)) {
+  console.error(`no deck at ${OUT}\navailable: ${fs.readdirSync(OUT_ROOT).join(', ')}`);
+  process.exit(1);
+}
 fs.mkdirSync(SHOTS, { recursive: true });
+fs.mkdirSync(METRICS_DIR, { recursive: true });
 
 const sizes = { 'hero-fb': [1200, 630], 'hero-x': [1920, 1080] };
 
@@ -65,6 +89,7 @@ const sizes = { 'hero-fb': [1200, 630], 'hero-x': [1920, 1080] };
     await page.close();
     console.log('rendered', name, w + 'x' + h);
   }
-  fs.writeFileSync(path.join(__dirname, 'metrics.json'), JSON.stringify(metrics, null, 1));
+  fs.writeFileSync(path.join(METRICS_DIR, SLUG + '.json'), JSON.stringify(metrics, null, 1));
+  console.log(`wrote ${Object.keys(metrics).length} shots to shots/${SLUG}/ and metrics/${SLUG}.json`);
   await browser.close();
 })();

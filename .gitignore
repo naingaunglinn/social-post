@@ -1,1 +1,11 @@
 exports/
+
+# Node deps — reinstall with `npm install` in design/night-ace-v2/
+node_modules/
+
+# Generated deck artifacts — all reproducible from design/night-ace-v2/posts/*.json
+# deck.json is deliberately NOT ignored: build.py reads it for the cover-rotation check.
+design/night-ace-v2/out/**/*.html
+design/night-ace-v2/out/**/*.pptx
+design/night-ace-v2/shots/
+design/night-ace-v2/metrics/

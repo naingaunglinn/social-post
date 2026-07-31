@@ -125,14 +125,23 @@ Your website feels fast to you because your browser has seen it before. First-ti
 | Post | Cover treatment | Slide-type sequence |
 |---|---|---|
 | 2026-07-27 website-speed (v2 light) | word mark `fast?` | A-A-A-A-A-A-A-A |
-| 2026-07-27 design-principles | word mark `taste?` | A-A-A-A-A-A-A-A |
+| 2026-07-27 design-principles | statement, **ink** (was word mark `taste?`) | B-A-A-A-A-A-A-A · inv 1,5 |
 | 2026-07-27 ai-automation | **inverted** | E-B-C-D-I-G-A-E |
-| 2026-07-28 claude-code-orchestration | statement | B-A-G-C-D-E-I-B |
+| 2026-07-28 claude-code-orchestration | statement | B-A-G-C-D-E-I-B · inv 6 |
 
 Grid note (2026-07-27): the two word-mark covers read near-identical side by side — flagged for a
 possible cover swap on design-principles before its Jul 31 slot; next post must not use inverted.
 Grid note (2026-07-28): contact sheet re-checked with the statement cover added — four treatments
 now in rotation, reads varied. Next post must not use a statement cover.
+Grid note (2026-07-31): **cover swap actioned, and the cover is now inverted** — website-speed shipped
+a paper cover, so this one is ink. Covers alternate paper/ink from here; `build.py` warns on repeats. `fast?` (posted Jul 30) and
+`taste?` (due Aug 1) would have landed adjacent in the Instagram grid — exactly the wallpaper
+failure the Jul-27 note predicted. Slide 1 is now a statement cover; slides 2–8 keep the
+giant-word vocabulary from deck §9, with slide 5 (`type.`) inverted as mid-deck punctuation.
+Re-render required before posting: `python3 build.py 2026-07-27-design-principles-over-taste`.
+**Open exception:** this deck is 2 distinct slide types, below the Step 5 floor of ≥4. A giant-word
+series can't satisfy that floor without abandoning its premise — decide whether the floor should
+exempt word-mark decks, or whether this post should switch to mixed types.
 
 ## 2026-07-28 — Claude Code orchestration: "Stop prompting. Start orchestrating."
 

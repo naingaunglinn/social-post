@@ -173,6 +173,12 @@ posts in. Rotate covers, and **never use the same treatment as the previous post
 3. **Inverted** — ink ground, paper type (type E). Punches hardest in a grid of light tiles.
 4. **Numeral** — a big figure or count when the post is genuinely a list of N.
 
+**Alternate the cover's ground with the previous post.** Paper, then ink, then paper. This is the
+grid's main variety mechanism — a feed of light tiles reads as wallpaper no matter how the type is
+set, and the checkerboard is what makes a locked palette look varied across nine tiles. `build.py`
+compares each build against the previous post's `deck.json` and prints a `! grid:` warning when
+either the ground or the treatment repeats. Don't ship past that warning without a reason.
+
 Record which one was used in the calendar's `LAYOUT LOG`.
 
 ### Contact-sheet check
@@ -217,17 +223,62 @@ pitch. Every caption's first line works with zero context.
 
 ## Step 3 — Render
 
-Read copy from the deck file, then:
+Deck content is **data, not code**. Write a spec at `design/night-ace-v2/posts/<slug>.json`, then:
 
 ```bash
 cd design/night-ace-v2
-python3 build.py        # SLIDES table; each entry declares its slide type
-node render.js          # Playwright → shots/
-python3 make_pptx.py    # Canva twin
+python3 build.py    <slug>   # posts/<slug>.json  → out/<slug>/*.html + deck.json
+node   render.js    <slug>   # Playwright         → shots/<slug>/ + metrics/<slug>.json
+python3 make_pptx.py <slug>  # Canva twin         → out/<slug>/<slug>.pptx
 ```
 
-`build.py` needs a renderer per slide type, not one template with swapped strings. Keep `SLIDES`
-and `make_pptx.py`'s `S` in sync.
+Each stage defaults to the newest post if the slug is omitted, and prints which one it picked.
+Nothing overwrites a previous deck — every post owns its `out/`, `shots/`, and `metrics/` entry.
+
+**Spec format.** Top level: `slug`, `title`, `cover` (the treatment name, for the LAYOUT LOG),
+`hero` (`statement` + `sub` for the landscape compositions), and `slides` — a list whose entries
+each declare a `type` plus that renderer's fields. `[[x]]` in any string wraps `x` in the electric-blue
+accent span. Never hand-edit `build.py` to change copy; the renderers are the engine, the spec is
+the content.
+
+Any slide may set `"ground": "ink"` to invert regardless of its type. Ground inversion is a
+**variable**, so a single-type deck can still carry punctuation — reach for this before reaching for
+a new slide type.
+
+**`anchor`** decides where a slide's free space goes: `top`, `center`, `bottom`, or `spread`.
+`spread` splits the content into three zones — header, main group, tail — pinned to the top, middle
+and bottom edges, so the tile reads full at thumbnail size. Every type A slide left at its default
+pools 26–38% of the tile as blank ground at one end, which is what makes a light cover read as an
+empty white square in the Instagram grid. Use `spread` on anything that will be a cover.
+
+**`eyebrow`** is a small mono label above the main block. It anchors the top of the tile and gives
+the accent a second home. Wrap any part in `[[…]]` to make it blue: `"eyebrow": "PRINCIPLE [[03]]"`.
+
+**Blue budget: one accent moment per slide, and it must not be the terminal period every time.**
+The old rule — bar fill plus the hero's period only — is why 14 of 14 accent uses across the first
+four decks were a full stop. That is the single biggest source of the "every post looks the same"
+feeling. Rotate where it lands: an eyebrow numeral, one word inside a title, the whole hero on an
+inverted ground, a mono label. `[[…]]` works in any string in the spec, not just the giant word. `build.py` prints the cover, sequence, distinct-type count, and which slides
+inverted, and writes the same into `out/<slug>/deck.json` with a ready-to-paste `layout_log_line`.
+Copy that line into the LAYOUT LOG rather than retyping the sequence from memory.
+
+**Sizing giant type is measurable, not guesswork.** `.hero` is `white-space:nowrap` inside
+`overflow:hidden`, so an oversized word is **clipped silently** — it will not look wrong in the HTML,
+only in the PNG. Portrait measure is 888px (1080 − 2×96 pad). Check a `gpx` before trusting it:
+
+```bash
+python3 -c "
+from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
+f=instantiateVariableFont(TTFont('fonts/Archivo.ttf'),{'wght':900,'wdth':100},inplace=False)
+u=f['head'].unitsPerEm; c=f.getBestCmap(); h=f['hmtx']
+w=lambda t,s: sum(h[c[ord(x)]][0] for x in t)/u*s - len(t)*0.025*s
+print(w('purpose.',172))   # must be <= 888
+"
+```
+
+Sizing every giant word to the *same optical width* (~778px) rather than the same point size is the
+intended look — a word-mark series fills the measure.
 
 **Landscape heroes get their own composition.** The current 1200×630 is the portrait layout
 reflowed, which leaves the right half empty and the type undersized. Re-set it: type scales up,
@@ -251,8 +302,9 @@ re-print §8 and §13 in the summary.
 
 1. `exports/YYYY-MM-DD-<slug>/`: numbered PNGs, `-linkedin.pdf`, both heroes, the PPTX.
 2. Optional: Canva, filed under `Night Ace / Social / YYYY-MM`.
-3. Append to `night-ace-content-calendar.md`: deck file link, export path, and a `LAYOUT LOG` line
-   recording the cover treatment and the slide-type sequence (e.g. `B-A-C-E-C-I-A-B`).
+3. Append to `night-ace-content-calendar.md`: deck file link, export path, and the `LAYOUT LOG`
+   line — copy `layout_log_line` from `out/<slug>/deck.json`, don't retype it. A hand-typed
+   sequence can drift from what actually rendered; the manifest can't.
 
 ## Step 5 — Definition of done
 

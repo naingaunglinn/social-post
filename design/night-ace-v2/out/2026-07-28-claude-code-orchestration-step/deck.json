@@ -1,0 +1,13 @@
+{
+ "slug": "2026-07-28-claude-code-orchestration-step",
+ "title": "Claude Code orchestration: Stop prompting. Start orchestrating.",
+ "cover": "statement",
+ "cover_ground": "paper",
+ "sequence": "B-A-G-C-D-E-I-B",
+ "distinct_types": 7,
+ "inverted_slides": [
+  6
+ ],
+ "accent_uses": 1,
+ "layout_log_line": "| 2026-07-28-claude-code-orchestration-step | statement | B-A-G-C-D-E-I-B |"
+}

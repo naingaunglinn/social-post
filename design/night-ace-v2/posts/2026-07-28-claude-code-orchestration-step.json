@@ -1,0 +1,67 @@
+{
+  "slug": "2026-07-28-claude-code-orchestration-step",
+  "title": "Claude Code orchestration: Stop prompting. Start orchestrating.",
+  "cover": "statement",
+  "hero": {
+    "statement": "Stop prompting.<br>Start orchestrating[[.]]",
+    "sub": "The orchestration step that turns Claude Code into an engineering process"
+  },
+  "slides": [
+    {
+      "type": "B",
+      "spx": 112,
+      "statement": "Stop<br>prompting.<br>Start<br>orchestrating[[.]]",
+      "tail": "The step that turns Claude Code from a fast assistant into an engineering process."
+    },
+    {
+      "type": "A",
+      "giant": "solo[[.]]",
+      "gpx": 260,
+      "title": "One context is<br>one opinion",
+      "body": "A single agent writes the code, then grades its own work. It defends its first idea to the end of the context window — the same trap that makes authors bad reviewers of their own code."
+    },
+    {
+      "type": "G",
+      "title": "What the orchestration<br>step looks like",
+      "rows": [
+        ["SCOUT", "→  map the codebase in parallel"],
+        ["FAN OUT", "→  one agent per concern"],
+        ["VERIFY", "→  skeptics refute each finding"],
+        ["MERGE", "→  one ranked synthesis"]
+      ]
+    },
+    {
+      "type": "C",
+      "title": "When to reach for it",
+      "items": [
+        "The work outgrows one context",
+        "Findings need independent checks",
+        "The task splits along clean seams",
+        "Being wrong is expensive"
+      ]
+    },
+    {
+      "type": "D",
+      "titleL": "Orchestrate",
+      "titleR": "Stay solo",
+      "itemsL": ["Codebase audits", "Wide migrations", "Adversarial review", "Research sweeps"],
+      "itemsR": ["One-file fixes", "Quick questions", "Exploration", "Anything cheap to redo"]
+    },
+    {
+      "type": "E",
+      "spx": 100,
+      "statement": "Orchestration<br>isn't speed.<br>It's doubt[[.]]",
+      "sub": "Parallel agents don't just finish sooner. They disagree — and the disagreement is the signal."
+    },
+    {
+      "type": "I",
+      "quote": "“An agent reviewing its own work is one opinion counted twice.”"
+    },
+    {
+      "type": "B",
+      "spx": 100,
+      "statement": "Ship the process,<br>not the prompt[[.]]",
+      "tail": "Want the full Night Ace orchestra for Claude Code — agents, commands, and the playbook? Comment “ACE” and we'll send you the package."
+    }
+  ]
+}

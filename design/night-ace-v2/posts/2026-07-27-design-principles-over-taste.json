@@ -1,0 +1,86 @@
+{
+  "slug": "2026-07-27-design-principles-over-taste",
+  "title": "Design principles: Taste starts arguments. Principles end them.",
+  "cover": "statement",
+  "note": "Cover swapped from word mark 'taste?' to a statement per the 2026-07-27 grid note — 'fast?' and 'taste?' read near-identical in the Instagram grid. Slides 2-8 keep the giant-word vocabulary from deck section 9. gpx values are measured to ~778px optical width in Archivo 900 at PAD 96.",
+  "hero": {
+    "statement": "Taste starts arguments.<br>Principles end them[[.]]",
+    "sub": "The five rules Night Ace designs by"
+  },
+  "slides": [
+    {
+      "type": "B",
+      "spx": 112,
+      "statement": "Taste starts<br>arguments.<br>Principles<br>end them.",
+      "tail": "The five rules Night Ace designs by.",
+      "ground": "ink",
+      "anchor": "spread",
+      "eyebrow": "[[FIVE RULES]] · NIGHT ACE"
+    },
+    {
+      "type": "A",
+      "giant": "decide.",
+      "gpx": 204,
+      "title": "Why principles",
+      "body": "Debates about how something looks can run forever. Debates about a rule end quickly. A principle is a design decision you make once — then reuse on every screen that follows.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE 00"
+    },
+    {
+      "type": "A",
+      "giant": "one.",
+      "gpx": 348,
+      "title": "One job per screen",
+      "body": "Every screen gets one job, and the layout should make it obvious. When everything is bold, nothing is.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE [[01]]"
+    },
+    {
+      "type": "A",
+      "giant": "space.",
+      "gpx": 224,
+      "title": "Whitespace is structure",
+      "body": "Empty space isn't wasted space — it's how readers know what belongs together. Crowded layouts push that work onto the visitor.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE [[02]]"
+    },
+    {
+      "type": "A",
+      "ground": "ink",
+      "giant": "type.",
+      "gpx": 300,
+      "title": "Type does the<br>heavy lifting",
+      "body": "Most of an interface is text. Get the type right — size, spacing, contrast — and the design is mostly finished before a single decoration appears.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE [[03]]"
+    },
+    {
+      "type": "A",
+      "giant": "again.",
+      "gpx": 246,
+      "title": "Consistency beats novelty",
+      "body": "The second time a pattern appears, it should look exactly like the first. People learn an interface once; don't make them relearn it on every page.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE [[04]]"
+    },
+    {
+      "type": "A",
+      "giant": "less.",
+      "gpx": 322,
+      "title": "Everything earns its place",
+      "body": "If removing an element changes nothing, it was decoration. Remove things until something breaks, then put only that one thing back.",
+      "anchor": "spread",
+      "eyebrow": "PRINCIPLE [[05]]"
+    },
+    {
+      "type": "A",
+      "giant": "purpose[[.]]",
+      "gpx": 172,
+      "title": "Designed on purpose",
+      "body": "Principles are why a design survives contact with real content. Want a site designed on purpose? Send Night Ace a message — we'll show you our reasoning, not just our portfolio.",
+      "anchor": "spread",
+      "eyebrow": "NIGHT ACE"
+    }
+  ],
+  "cover_ground_note": "Cover inverted: previous post (website-speed) shipped a paper cover."
+}

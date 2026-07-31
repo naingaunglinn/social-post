@@ -1,12 +1,35 @@
 #!/usr/bin/env python3
 """Hand-rolled OOXML PPTX of the Night Ace carousel (no external deps).
-v4: fully generic — consumes render.js's metrics.json dump (text runs, fonts,
-colors, shapes, page ground), so every slide type renders without bespoke code.
-Font names map to Canva's library (Archivo Black / Archivo / IBM Plex Sans / IBM Plex Mono)."""
-import json, os, zipfile
+v5: fully generic — consumes render.js's metrics/<slug>.json dump (text runs,
+fonts, colors, shapes, page ground), so every slide type renders without bespoke
+code. Writes the Canva twin next to the deck it came from.
+Font names map to Canva's library (Archivo Black / Archivo / IBM Plex Sans / IBM Plex Mono).
+
+    python3 make_pptx.py             # newest metrics/ dump
+    python3 make_pptx.py <slug>
+"""
+import glob, json, os, sys, zipfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-M = json.load(open(os.path.join(ROOT, "metrics.json")))
+METRICS_DIR = os.path.join(ROOT, "metrics")
+
+def resolve_slug(arg=None):
+    if arg:
+        return arg[:-5] if arg.endswith(".json") else arg
+    found = sorted(glob.glob(os.path.join(METRICS_DIR, "*.json")))
+    if not found:
+        sys.exit(f"no metrics in {METRICS_DIR}/ — run render.js first")
+    slug = os.path.basename(found[-1])[:-5]
+    print("no slug given — using newest metrics:", slug)
+    return slug
+
+SLUG = resolve_slug(sys.argv[1] if len(sys.argv) > 1 else None)
+MPATH = os.path.join(METRICS_DIR, SLUG + ".json")
+if not os.path.exists(MPATH):
+    avail = ", ".join(sorted(os.path.basename(p)[:-5]
+                             for p in glob.glob(os.path.join(METRICS_DIR, "*.json"))))
+    sys.exit(f"no metrics at {MPATH}\navailable: {avail or '(none)'}")
+M = json.load(open(MPATH, encoding="utf-8"))
 SLIDE_KEYS = sorted(k for k in M if k.startswith("slide-"))
 N = len(SLIDE_KEYS)
 W, H = 1080, 1350
@@ -185,4 +208,4 @@ def build(path):
             z.writestr(f"ppt/slides/_rels/slide{i}.xml.rels", slide_rels)
     print("wrote", path, os.path.getsize(path), "bytes,", N, "slides")
 
-build(os.path.join(ROOT, "night-ace-carousel-v2.pptx"))
+build(os.path.join(ROOT, "out", SLUG, SLUG + ".pptx"))

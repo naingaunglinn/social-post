@@ -1,24 +1,41 @@
 #!/usr/bin/env python3
-"""Night Ace v4 slide builder — one renderer per slide type (A/B/C/D/E/G/I),
-plus dedicated landscape hero compositions. Emits standalone HTML into out/."""
+"""Night Ace v5 slide builder — one renderer per slide type (A/B/C/D/E/G/I),
+plus dedicated landscape hero compositions.
+
+Deck content is data, not code: each post is a JSON spec in posts/, and output
+goes to out/<slug>/ so decks never overwrite each other.
+
+    python3 build.py                 # newest spec in posts/
+    python3 build.py <slug>          # posts/<slug>.json
+    python3 build.py posts/x.json    # explicit path
+
+In spec strings, [[x]] wraps x in the electric-blue accent span."""
+import glob
+import json
 import os
+import re
+import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 FONTS = os.path.join(ROOT, "fonts")
-OUT = os.path.join(ROOT, "out")
-os.makedirs(OUT, exist_ok=True)
+POSTS = os.path.join(ROOT, "posts")
 
 PAPER, INK, BLUE, GRAPHITE, TRACK = "#F5F5F5", "#141419", "#2E6BFF", "#55555C", "#DFDFE4"
 
+# out/<slug>/*.html sits two levels below fonts/ — relative keeps emitted HTML
+# portable across machines (absolute file:// paths baked in the builder's cwd).
+FONT_URL = "../../fonts"
+
 CSS_BASE = f"""
-@font-face {{ font-family:'Archivo VF'; src:url('file://{FONTS}/Archivo.ttf'); font-weight:100 1000; }}
-@font-face {{ font-family:'Plex VF'; src:url('file://{FONTS}/IBMPlexSans.ttf'); font-weight:100 1000; }}
-@font-face {{ font-family:'Plex Mono'; src:url('file://{FONTS}/IBMPlexMono-Regular.ttf'); font-weight:400; }}
-@font-face {{ font-family:'Plex Mono'; src:url('file://{FONTS}/IBMPlexMono-Medium.ttf'); font-weight:500; }}
+@font-face {{ font-family:'Archivo VF'; src:url('{FONT_URL}/Archivo.ttf'); font-weight:100 1000; }}
+@font-face {{ font-family:'Plex VF'; src:url('{FONT_URL}/IBMPlexSans.ttf'); font-weight:100 1000; }}
+@font-face {{ font-family:'Plex Mono'; src:url('{FONT_URL}/IBMPlexMono-Regular.ttf'); font-weight:400; }}
+@font-face {{ font-family:'Plex Mono'; src:url('{FONT_URL}/IBMPlexMono-Medium.ttf'); font-weight:500; }}
 * {{ margin:0; padding:0; box-sizing:border-box; }}
 html,body {{ width:100%; height:100%; }}
 body {{ font-family:'Plex VF',sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }}
 .slide {{ display:flex; flex-direction:column; overflow:hidden; }}
+.slide.spread {{ justify-content:space-between; }}
 .slide.paper {{ background:{PAPER}; color:{INK}; }}
 .slide.ink {{ background:{INK}; color:{PAPER}; }}
 .hdr {{ display:flex; justify-content:space-between; align-items:baseline; }}
@@ -49,10 +66,81 @@ body {{ font-family:'Plex VF',sans-serif; -webkit-font-smoothing:antialiased; te
 
 B = lambda s: f'<span class="blue">{s}</span>'
 
-def page(idx, total, ground, inner, W, H, PAD, mono_px):
+# ---- composition primitives -------------------------------------------------
+
+ANCHORS = ("top", "center", "bottom", "spread")
+
+def layout(s, default, group, tail=""):
+    """Place a slide's content. `group` is the main block, kept tight together;
+    `tail` is an optional element that wants the bottom edge.
+
+    anchor=spread emits group and tail as separate flex children, so with the
+    header they become three zones — top / middle / bottom — and the tile reads
+    full at thumbnail size. Other anchors pool the free space at one end."""
+    a = s.get("anchor", default)
+    if a not in ANCHORS:
+        sys.exit(f"anchor must be one of {'/'.join(ANCHORS)}, got {a!r}")
+    if a == "spread":
+        return f"<div>{group}</div>{tail}"
+    if a == "top":
+        return group + tail + '<div style="margin-bottom:auto"></div>'
+    if a == "center":
+        return ('<div style="margin-top:auto"></div>' + group + tail
+                + '<div style="margin-bottom:auto"></div>')
+    return '<div style="margin-top:auto"></div>' + group + tail
+
+def eyebrow(s, mb=28):
+    """Small mono label above the main block. Fills the top of the tile and gives
+    the accent somewhere to land other than a terminal period."""
+    if not s.get("eyebrow"):
+        return ""
+    return (f'<div class="mono" style="font-size:26px;letter-spacing:.14em;'
+            f'margin-bottom:{mb}px">{s["eyebrow"]}</div>')
+
+# ---- spec loading ----------------------------------------------------------
+
+def expand(v):
+    """Recursively turn [[x]] into a blue accent span."""
+    if isinstance(v, str):
+        return re.sub(r"\[\[(.+?)\]\]", lambda m: B(m.group(1)), v)
+    if isinstance(v, list):
+        return [expand(x) for x in v]
+    if isinstance(v, dict):
+        return {k: expand(x) for k, x in v.items()}
+    return v
+
+def load_spec(arg=None):
+    if arg and os.path.sep in arg:
+        path = arg
+    elif arg:
+        path = os.path.join(POSTS, arg if arg.endswith(".json") else arg + ".json")
+    else:
+        found = sorted(glob.glob(os.path.join(POSTS, "*.json")))
+        if not found:
+            sys.exit(f"no deck specs in {POSTS}/")
+        path = found[-1]
+        print("no slug given — using newest spec:", os.path.basename(path))
+    if not os.path.exists(path):
+        avail = "\n  ".join(sorted(os.path.basename(p)[:-5]
+                                  for p in glob.glob(os.path.join(POSTS, "*.json"))))
+        sys.exit(f"no spec at {path}\navailable:\n  {avail}")
+    spec = json.load(open(path, encoding="utf-8"))
+    spec.setdefault("slug", os.path.basename(path)[:-5])
+    for key in ("hero", "slides"):
+        if key not in spec:
+            sys.exit(f"{path}: missing required key '{key}'")
+    return expand(spec)
+
+SPEC = load_spec(sys.argv[1] if len(sys.argv) > 1 else None)
+SLUG = SPEC["slug"]
+SLIDES = SPEC["slides"]
+OUT = os.path.join(ROOT, "out", SLUG)
+os.makedirs(OUT, exist_ok=True)
+
+def page(idx, total, ground, inner, W, H, PAD, mono_px, extra=""):
     css = CSS_BASE + f".slide {{ width:{W}px; height:{H}px; padding:{PAD}px; }}"
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head>
-<body><div class="slide {ground}">
+<body><div class="slide {ground}{(' ' + extra) if extra else ''}">
   <div class="hdr">
     <span class="mono wordmark" style="font-size:{mono_px}px">NIGHT&nbsp;ACE</span>
     <span class="mono pageno" style="font-size:{mono_px}px">{idx:02d} — {total:02d}</span>
@@ -65,20 +153,22 @@ def bar(idx, total, mt):
 
 # ---- slide type renderers (portrait 1080×1350, PAD 96) ---------------------
 
-def type_A(idx, total, s):  # hero word, bottom-anchored
-    inner = (
-        f'<div class="hero" style="font-size:{s["gpx"]}px;margin-top:auto">{s["giant"]}</div>'
-        f'<div class="title" style="font-size:{s.get("tpx",66)}px;max-width:860px;margin-top:52px">{s["title"]}</div>'
-        + bar(idx, total, 44)
-        + f'<div class="body" style="font-size:32px;max-width:780px;margin-top:44px">{s["body"]}</div>')
-    return "paper", inner
+def type_A(idx, total, s):  # hero word; anchor default bottom
+    group = (eyebrow(s)
+             + f'<div class="hero" style="font-size:{s["gpx"]}px">{s["giant"]}</div>'
+             f'<div class="title" style="font-size:{s.get("tpx",66)}px;max-width:860px;margin-top:52px">{s["title"]}</div>'
+             + bar(idx, total, 44))
+    tail = f'<div class="body" style="font-size:32px;max-width:780px;margin-top:44px">{s["body"]}</div>'
+    return "paper", layout(s, "bottom", group, tail)
 
-def type_B(idx, total, s):  # full-bleed statement, top-anchored
-    inner = (
-        f'<div class="statement" style="font-size:{s.get("spx",100)}px;margin-top:120px">{s["statement"]}</div>'
-        + bar(idx, total, 48)
-        + (f'<div class="body" style="font-size:32px;max-width:780px;margin-top:40px">{s["tail"]}</div>' if s.get("tail") else ""))
-    return "paper", inner
+def type_B(idx, total, s):  # full-bleed statement; anchor default top
+    mt = 0 if s.get("eyebrow") or s.get("anchor") != "top" else 120
+    group = (eyebrow(s, mb=32)
+             + f'<div class="statement" style="font-size:{s.get("spx",100)}px;margin-top:{mt}px">{s["statement"]}</div>'
+             + bar(idx, total, 48))
+    tail = (f'<div class="body" style="font-size:32px;max-width:780px;margin-top:40px">{s["tail"]}</div>'
+            if s.get("tail") else "")
+    return "paper", layout(s, "top", group, tail)
 
 def type_C(idx, total, s):  # numbered stack
     rows = "".join(
@@ -86,11 +176,11 @@ def type_C(idx, total, s):  # numbered stack
         f'<div class="num" style="font-size:26px;width:110px">{i + 1:02d}</div>'
         f'<div class="item" style="font-size:40px">{it}</div></div>'
         for i, it in enumerate(s["items"]))
-    inner = (
-        f'<div class="title" style="font-size:66px;max-width:860px;margin-top:120px">{s["title"]}</div>'
-        + bar(idx, total, 40)
-        + f'<div style="margin-top:64px">{rows}</div>')
-    return "paper", inner
+    mt = 0 if s.get("eyebrow") or s.get("anchor") != "top" else 120
+    group = (eyebrow(s)
+             + f'<div class="title" style="font-size:66px;max-width:860px;margin-top:{mt}px">{s["title"]}</div>'
+             + bar(idx, total, 40))
+    return "paper", layout(s, "top", group, f'<div style="margin-top:64px">{rows}</div>')
 
 def type_D(idx, total, s):  # comparison split, columns centered, bar bottom-anchored
     def col(title, items, blue=False, pad="padding-right:56px", rule=""):
@@ -126,11 +216,11 @@ def type_G(idx, total, s):  # mono block
         f'<div class="mlabel" style="font-size:30px;width:330px;{ "color:" + BLUE if i == len(s["rows"]) - 1 else ""}">{lab}</div>'
         f'<div class="mdesc" style="font-size:30px">{desc}</div></div>'
         for i, (lab, desc) in enumerate(s["rows"]))
-    inner = (
-        f'<div class="title" style="font-size:66px;max-width:860px;margin-top:120px">{s["title"]}</div>'
-        + bar(idx, total, 40)
-        + f'<div style="margin-top:72px">{rows}</div>')
-    return "paper", inner
+    mt = 0 if s.get("eyebrow") or s.get("anchor") != "top" else 120
+    group = (eyebrow(s)
+             + f'<div class="title" style="font-size:66px;max-width:860px;margin-top:{mt}px">{s["title"]}</div>'
+             + bar(idx, total, 40))
+    return "paper", layout(s, "top", group, f'<div style="margin-top:72px">{rows}</div>')
 
 def type_I(idx, total, s):  # pull quote, centered; bar at bottom
     inner = (
@@ -140,52 +230,78 @@ def type_I(idx, total, s):  # pull quote, centered; bar at bottom
 
 RENDERERS = {"A": type_A, "B": type_B, "C": type_C, "D": type_D, "E": type_E, "G": type_G, "I": type_I}
 
-# ---- deck: Claude Code orchestration step (seq B-A-G-C-D-E-I-B) ------------
+# ---- render the deck from the spec -----------------------------------------
 
-SLIDES = [
-    dict(type="B", spx=112,
-         statement=f'Stop<br>prompting.<br>Start<br>orchestrating{B(".")}',
-         tail="The step that turns Claude Code from a fast assistant into an engineering process."),
-    dict(type="A", giant=f"solo{B('.')}", gpx=260,
-         title="One context is<br>one opinion",
-         body="A single agent writes the code, then grades its own work. It defends its first idea to the end of the context window — the same trap that makes authors bad reviewers of their own code."),
-    dict(type="G", title="What the orchestration<br>step looks like",
-         rows=[("SCOUT", "→  map the codebase in parallel"),
-               ("FAN OUT", "→  one agent per concern"),
-               ("VERIFY", "→  skeptics refute each finding"),
-               ("MERGE", "→  one ranked synthesis")]),
-    dict(type="C", title="When to reach for it",
-         items=["The work outgrows one context", "Findings need independent checks",
-                "The task splits along clean seams", "Being wrong is expensive"]),
-    dict(type="D", titleL="Orchestrate", titleR="Stay solo",
-         itemsL=["Codebase audits", "Wide migrations", "Adversarial review", "Research sweeps"],
-         itemsR=["One-file fixes", "Quick questions", "Exploration", "Anything cheap to redo"]),
-    dict(type="E", spx=100,
-         statement=f'Orchestration<br>isn\'t speed.<br>It\'s doubt{B(".")}',
-         sub="Parallel agents don't just finish sooner. They disagree — and the disagreement is the signal."),
-    dict(type="I", quote="“An agent reviewing its own work is one opinion counted twice.”"),
-    dict(type="B", spx=100,
-         statement=f'Ship the process,<br>not the prompt{B(".")}',
-         tail="Want the full Night Ace orchestra for Claude Code — agents, commands, and the playbook? Comment “ACE” and we'll send you the package."),
-]
+def render_slide(i, s):
+    """Returns (ground, inner, extra_class). An explicit spec `ground` overrides
+    the type's default, so inversion is a per-slide variable on any slide type."""
+    if s["type"] not in RENDERERS:
+        sys.exit(f"slide {i}: unknown type {s['type']!r} (have {'/'.join(sorted(RENDERERS))})")
+    ground, inner = RENDERERS[s["type"]](i, len(SLIDES), s)
+    override = s.get("ground")
+    if override not in (None, "paper", "ink"):
+        sys.exit(f"slide {i}: ground must be 'paper' or 'ink', got {override!r}")
+    extra = "spread" if s.get("anchor") == "spread" else ""
+    return (override or ground), inner, extra
 
 for i, s in enumerate(SLIDES, 1):
-    ground, inner = RENDERERS[s["type"]](i, len(SLIDES), s)
-    open(os.path.join(OUT, f"slide-{i:02d}.html"), "w").write(
-        page(i, len(SLIDES), ground, inner, 1080, 1350, 96, 22))
+    ground, inner, extra = render_slide(i, s)
+    open(os.path.join(OUT, f"slide-{i:02d}.html"), "w", encoding="utf-8").write(
+        page(i, len(SLIDES), ground, inner, 1080, 1350, 96, 22, extra))
 
 # ---- landscape heroes: own composition, full width, type scales up ---------
 
 def hero(name, W, H, PAD, spx, sub_px, mono_px, bar_mt, sub_mt):
-    statement = f'Stop prompting.<br>Start orchestrating{B(".")}'
+    n = len(SLIDES)
     inner = (
         f'<div style="margin-top:auto"></div>'
-        f'<div class="statement" style="font-size:{spx}px">{statement}</div>'
-        + bar(1, 8, bar_mt)
-        + f'<div class="body" style="font-size:{sub_px}px;margin-top:{sub_mt}px">The orchestration step that turns Claude Code into an engineering process</div>'
+        f'<div class="statement" style="font-size:{spx}px">{SPEC["hero"]["statement"]}</div>'
+        + bar(1, n, bar_mt)
+        + f'<div class="body" style="font-size:{sub_px}px;margin-top:{sub_mt}px">{SPEC["hero"]["sub"]}</div>'
         + f'<div style="margin-bottom:auto"></div>')
-    open(os.path.join(OUT, name), "w").write(page(1, 8, "ink", inner, W, H, PAD, mono_px))
+    open(os.path.join(OUT, name), "w", encoding="utf-8").write(
+        page(1, n, "ink", inner, W, H, PAD, mono_px))
 
 hero("hero-fb.html", 1200, 630, 64, 66, 24, 16, 32, 24)
 hero("hero-x.html", 1920, 1080, 96, 104, 32, 22, 44, 32)
-print("built", len([f for f in os.listdir(OUT) if f.endswith('.html')]), "html files in", OUT)
+
+# ---- manifest: the LAYOUT LOG line, derived rather than transcribed ---------
+
+sequence = "-".join(s["type"] for s in SLIDES)
+grounds = [render_slide(i, s)[0] for i, s in enumerate(SLIDES, 1)]
+manifest = {
+    "slug": SLUG,
+    "title": SPEC.get("title", SLUG),
+    "cover": SPEC.get("cover", "?"),
+    "cover_ground": grounds[0],
+    "sequence": sequence,
+    "distinct_types": len(set(s["type"] for s in SLIDES)),
+    "inverted_slides": [i for i, g in enumerate(grounds, 1) if g == "ink"],
+    "accent_uses": sum(len(re.findall(r"\[\[.+?\]\]", json.dumps(v, ensure_ascii=False)))
+                       for v in [SPEC["slides"]]),
+    "layout_log_line": f'| {SLUG} | {SPEC.get("cover", "?")} | {sequence} |',
+}
+json.dump(manifest, open(os.path.join(OUT, "deck.json"), "w", encoding="utf-8"),
+          indent=1, ensure_ascii=False)
+
+print(f"built {len([f for f in os.listdir(OUT) if f.endswith('.html')])} html files in {OUT}")
+print(f"  cover {manifest['cover']} on {grounds[0]} · sequence {sequence} · "
+      f"{manifest['distinct_types']} distinct types · inverted {manifest['inverted_slides']}")
+print("  LAYOUT LOG:", manifest["layout_log_line"])
+
+# ---- grid check: the cover is what shows in the Instagram grid ---------------
+
+prev = None
+for p in sorted(glob.glob(os.path.join(ROOT, "out", "*", "deck.json"))):
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except (OSError, ValueError):
+        continue
+    if d.get("slug") and d["slug"] < SLUG:
+        prev = d
+if prev:
+    if prev.get("cover_ground") == grounds[0]:
+        print(f"  ! grid: cover ground '{grounds[0]}' repeats {prev['slug']} — "
+              f"alternate paper/ink so the grid doesn't read flat")
+    if prev.get("cover") == manifest["cover"]:
+        print(f"  ! grid: cover treatment '{manifest['cover']}' repeats {prev['slug']}")
