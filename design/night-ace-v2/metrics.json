@@ -1,0 +1,1364 @@
+{
+ "hero-fb": {
+  "bg": "#141419",
+  "texts": [
+   {
+    "x": 64,
+    "y": 64,
+    "w": 1072,
+    "h": 20,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "01 — 08",
+      "c": "#dfdfe4"
+     },
+     {
+      "t": "\n  ",
+      "c": "#f5f5f5"
+     }
+    ]
+   },
+   {
+    "x": 64,
+    "y": 207.375,
+    "w": 1072,
+    "h": 137.25,
+    "fs": 66,
+    "lh": 68.64,
+    "ls": -1.32,
+    "weight": 800,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Stop prompting.",
+      "c": "#f5f5f5"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Start orchestrating",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 64,
+    "y": 406.625,
+    "w": 1072,
+    "h": 36,
+    "fs": 24,
+    "lh": 36,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "The orchestration step that turns Claude Code into an engineering process",
+      "c": "#dfdfe4"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 64,
+    "y": 376.625,
+    "w": 1072,
+    "h": 6,
+    "color": "#55555c",
+    "radius": 3
+   },
+   {
+    "x": 64,
+    "y": 376.625,
+    "w": 134,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "hero-x": {
+  "bg": "#141419",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 1728,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "01 — 08",
+      "c": "#dfdfe4"
+     },
+     {
+      "t": "\n  ",
+      "c": "#f5f5f5"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 381.34375,
+    "w": 1728,
+    "h": 216.3125,
+    "fs": 104,
+    "lh": 108.16,
+    "ls": -2.08,
+    "weight": 800,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Stop prompting.",
+      "c": "#f5f5f5"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Start orchestrating",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 679.65625,
+    "w": 1728,
+    "h": 48,
+    "fs": 32,
+    "lh": 48,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "The orchestration step that turns Claude Code into an engineering process",
+      "c": "#dfdfe4"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 641.65625,
+    "w": 1728,
+    "h": 6,
+    "color": "#55555c",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 641.65625,
+    "w": 216,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-01": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "01 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 245,
+    "w": 888,
+    "h": 465.875,
+    "fs": 112,
+    "lh": 116.48,
+    "ls": -2.24,
+    "weight": 800,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Stop",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "prompting.",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Start",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "orchestrating",
+      "c": "#141419"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 804.875,
+    "w": 780,
+    "h": 96,
+    "fs": 32,
+    "lh": 48,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "The step that turns Claude Code from a fast assistant into an engineering process.",
+      "c": "#55555c"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 758.875,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 758.875,
+    "w": 111,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-02": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "02 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 526.421875,
+    "w": 888,
+    "h": 244.390625,
+    "fs": 260,
+    "lh": 244.4,
+    "ls": -6.5,
+    "weight": 900,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "solo",
+      "c": "#141419"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 822.8125,
+    "w": 860,
+    "h": 145.1875,
+    "fs": 66,
+    "lh": 72.6,
+    "ls": -0.99,
+    "weight": 750,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "One context is",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "one opinion",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 1062,
+    "w": 780,
+    "h": 192,
+    "fs": 32,
+    "lh": 48,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "A single agent writes the code, then grades its own work. It defends its first idea to the end of the context window — the same trap that makes authors bad reviewers of their own code.",
+      "c": "#55555c"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 1012,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 1012,
+    "w": 222,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-03": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "03 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 245,
+    "w": 860,
+    "h": 145.1875,
+    "fs": 66,
+    "lh": 72.6,
+    "ls": -0.99,
+    "weight": 750,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "What the orchestration",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "step looks like",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 508.1875,
+    "w": 330,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 3,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "SCOUT",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 426,
+    "y": 508.1875,
+    "w": 558,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 0.6,
+    "weight": 400,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "→  map the codebase in parallel",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 587.1875,
+    "w": 330,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 3,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "FAN OUT",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 426,
+    "y": 587.1875,
+    "w": 427.8125,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 0.6,
+    "weight": 400,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "→  one agent per concern",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 666.1875,
+    "w": 330,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 3,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "VERIFY",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 426,
+    "y": 666.1875,
+    "w": 558,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 0.6,
+    "weight": 400,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "→  skeptics refute each finding",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 745.1875,
+    "w": 330,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 3,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "MERGE",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 426,
+    "y": 745.1875,
+    "w": 409.203125,
+    "h": 39,
+    "fs": 30,
+    "lh": 36,
+    "ls": 0.6,
+    "weight": 400,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "→  one ranked synthesis",
+      "c": "#55555c"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 430.1875,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 430.1875,
+    "w": 333,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-04": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "04 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 245,
+    "w": 860,
+    "h": 72.59375,
+    "fs": 66,
+    "lh": 72.6,
+    "ls": -0.99,
+    "weight": 750,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "When to reach for it",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 441.59375,
+    "w": 110,
+    "h": 34,
+    "fs": 26,
+    "lh": 31.2,
+    "ls": 3.64,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "01",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 206,
+    "y": 427.59375,
+    "w": 570,
+    "h": 52,
+    "fs": 40,
+    "lh": 48,
+    "ls": 0,
+    "weight": 520,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "The work outgrows one context",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 537.59375,
+    "w": 110,
+    "h": 34,
+    "fs": 26,
+    "lh": 31.2,
+    "ls": 3.64,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "02",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 206,
+    "y": 523.59375,
+    "w": 635,
+    "h": 52,
+    "fs": 40,
+    "lh": 48,
+    "ls": 0,
+    "weight": 520,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Findings need independent checks",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 633.59375,
+    "w": 110,
+    "h": 34,
+    "fs": 26,
+    "lh": 31.2,
+    "ls": 3.64,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "03",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 206,
+    "y": 619.59375,
+    "w": 610,
+    "h": 52,
+    "fs": 40,
+    "lh": 48,
+    "ls": 0,
+    "weight": 520,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "The task splits along clean seams",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 729.59375,
+    "w": 110,
+    "h": 34,
+    "fs": 26,
+    "lh": 31.2,
+    "ls": 3.64,
+    "weight": 500,
+    "family": "\"Plex Mono\", monospace",
+    "align": "start",
+    "runs": [
+     {
+      "t": "04",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 206,
+    "y": 715.59375,
+    "w": 461,
+    "h": 52,
+    "fs": 40,
+    "lh": 48,
+    "ls": 0,
+    "weight": 520,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Being wrong is expensive",
+      "c": "#141419"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 357.59375,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 357.59375,
+    "w": 444,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-05": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "05 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 510.8125,
+    "w": 388,
+    "h": 57,
+    "fs": 52,
+    "lh": 62.4,
+    "ls": -0.52,
+    "weight": 750,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Orchestrate",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 603.8125,
+    "w": 388,
+    "h": 258.375,
+    "fs": 34,
+    "lh": 64.6,
+    "ls": 0,
+    "weight": 450,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Codebase audits",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Wide migrations",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Adversarial review",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Research sweeps",
+      "c": "#55555c"
+     }
+    ]
+   },
+   {
+    "x": 597,
+    "y": 510.8125,
+    "w": 387,
+    "h": 57,
+    "fs": 52,
+    "lh": 62.4,
+    "ls": -0.52,
+    "weight": 750,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Stay solo",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 597,
+    "y": 603.8125,
+    "w": 387,
+    "h": 258.375,
+    "fs": 34,
+    "lh": 64.6,
+    "ls": 0,
+    "weight": 450,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "One-file fixes",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Quick questions",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Exploration",
+      "c": "#55555c"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "Anything cheap to redo",
+      "c": "#55555c"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 1248,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 1248,
+    "w": 555,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   },
+   {
+    "x": 539,
+    "y": 510.8125,
+    "w": 1,
+    "h": 351.375,
+    "color": "#dfdfe4",
+    "radius": 0
+   }
+  ]
+ },
+ "slide-06": {
+  "bg": "#141419",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "\n    ",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": "06 — 08",
+      "c": "#dfdfe4"
+     },
+     {
+      "t": "\n  ",
+      "c": "#f5f5f5"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 408.5,
+    "w": 888,
+    "h": 312,
+    "fs": 100,
+    "lh": 104,
+    "ls": -2,
+    "weight": 800,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Orchestration",
+      "c": "#f5f5f5"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "isn't speed.",
+      "c": "#f5f5f5"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "It's doubt",
+      "c": "#f5f5f5"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 810.5,
+    "w": 780,
+    "h": 96,
+    "fs": 32,
+    "lh": 48,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Parallel agents don't just finish sooner. They disagree — and the disagreement is the signal.",
+      "c": "#dfdfe4"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 764.5,
+    "w": 888,
+    "h": 6,
+    "color": "#55555c",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 764.5,
+    "w": 666,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-07": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "07 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 567.71875,
+    "w": 840,
+    "h": 237.5625,
+    "fs": 60,
+    "lh": 79.2,
+    "ls": -0.3,
+    "weight": 500,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "“An agent reviewing its own work is one opinion counted twice.”",
+      "c": "#141419"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 1248,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 1248,
+    "w": 777,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ },
+ "slide-08": {
+  "bg": "#f5f5f5",
+  "texts": [
+   {
+    "x": 96,
+    "y": 96,
+    "w": 888,
+    "h": 29,
+    "fs": 16,
+    "lh": 19.2,
+    "ls": 0,
+    "weight": 400,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "NIGHT ACE",
+      "c": "#141419"
+     },
+     {
+      "t": "\n    ",
+      "c": "#141419"
+     },
+     {
+      "t": "08 — 08",
+      "c": "#55555c"
+     },
+     {
+      "t": "\n  ",
+      "c": "#141419"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 245,
+    "w": 888,
+    "h": 208,
+    "fs": 100,
+    "lh": 104,
+    "ls": -2,
+    "weight": 800,
+    "family": "\"Archivo VF\"",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Ship the process,",
+      "c": "#141419"
+     },
+     {
+      "br": true
+     },
+     {
+      "t": "not the prompt",
+      "c": "#141419"
+     },
+     {
+      "t": ".",
+      "c": "#2e6bff"
+     }
+    ]
+   },
+   {
+    "x": 96,
+    "y": 547,
+    "w": 780,
+    "h": 144,
+    "fs": 32,
+    "lh": 48,
+    "ls": 0,
+    "weight": 420,
+    "family": "\"Plex VF\", sans-serif",
+    "align": "start",
+    "runs": [
+     {
+      "t": "Want the full Night Ace orchestra for Claude Code — agents, commands, and the playbook? Comment “ACE” and we'll send you the package.",
+      "c": "#55555c"
+     }
+    ]
+   }
+  ],
+  "shapes": [
+   {
+    "x": 96,
+    "y": 501,
+    "w": 888,
+    "h": 6,
+    "color": "#dfdfe4",
+    "radius": 3
+   },
+   {
+    "x": 96,
+    "y": 501,
+    "w": 888,
+    "h": 6,
+    "color": "#2e6bff",
+    "radius": 3
+   }
+  ]
+ }
+}
